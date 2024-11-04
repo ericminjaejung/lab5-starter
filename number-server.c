@@ -22,7 +22,6 @@ void handle_shownums(int client_sock, char *path) {
 void handle_increment(int client_sock, char* path) {
     printf("SERVER LOG: Got request for path \"%s\"\n", path);
     
-
     ++num;
     char response_buff[BUFFER_SIZE];
     snprintf(response_buff, BUFFER_SIZE, "The number is now: %ld", num);
