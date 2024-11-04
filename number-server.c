@@ -34,7 +34,7 @@ void handle_increment(int client_sock, char* path) {
 void handle_add(int client_sock, char* path) {
     printf("SERVER LOG: Got request for path \"%s\"\n", path);
 
-    int add_num = atoi(path + 11);
+    int add_num = atoi(path + ADD_PATH_NUM_INDEX);
 
     num += add_num;
     
@@ -88,7 +88,7 @@ void handle_response(char *request, int client_sock) {
 	handle_shownums(client_sock, path);	
     } else if (strcmp(path, "/increment") == 0) {
 	handle_increment(client_sock, path);
-    } else if (strstr(path, "/add?value=") != NULL && 
+    } else if (strncmp(path, "/add?value=", ADD_PATH_NUM_INDEX - 1) == 0 && 
 	is_numeric(path, ADD_PATH_NUM_INDEX)) {
 	handle_add(client_sock, path);
     } else {
